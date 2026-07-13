@@ -24,6 +24,7 @@ It sends a request to the provided URL and then inspects the headers for presenc
 python header_checker.py https://example.com
 
 # Planned improvements 
+- Handle errors
 - Add a more detailed analysis of `Content-Security-Policy`
 - Add batch URL scanning from another file
 - Create a "score" based on how secure the URL is
