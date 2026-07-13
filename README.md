@@ -1,4 +1,4 @@
-# Security-header-checker
+## Security-header-checker
 A command line tool used to see if a website has set important HTTP security headers and then explains the risk of not having this header.
 
 # What it does
@@ -6,7 +6,7 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 # Headers checked and their associated risk of being missing
 
-| Header | Risk |
+# | Header | Risk |
 | `Strict-Transport-Security` | Forces HTTPS, preventing downgrade to unencrypted HTTP |
 | `X-Frame-Options` | Prevents the site being loaded in a hidden iframe (clickjacking) |
 | `X-Content-Type-Options` | Stops browsers guessing file types, reducing script injection risk |
