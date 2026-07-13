@@ -1,10 +1,10 @@
-## Security-header-checker
+# Security-header-checker
 A command line tool used to see if a website has set important HTTP security headers and then explains the risk of not having this header.
 
-# What it does
+## What it does
 It sends a request to the provided URL and then inspects the headers for presence and alerts the user to any missing headers.
 
-# Headers checked and their associated risk of being missing
+## Headers checked and their associated risk of being missing
 
 | Header | Risk |
 
@@ -20,7 +20,7 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 | `Permissions-Policy` | Restricts access to browser features like camera, mic, and location |
 
-# Usage
+## Usage
 python header_checker.py https://example.com
 
 # Planned improvements 
