@@ -17,4 +17,4 @@ It sends a request to the provided URL and then inspects the headers for presenc
 # Usage
 python header_checker.py https://example.com
 
-##Plan
+## Plan
