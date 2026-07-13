@@ -7,16 +7,24 @@ It sends a request to the provided URL and then inspects the headers for presenc
 # Headers checked and their associated risk of being missing
 
 | Header | Risk |
+
 | `Strict-Transport-Security` | Forces HTTPS, preventing downgrade to unencrypted HTTP |
 
 | `X-Frame-Options` | Prevents the site being loaded in a hidden iframe (clickjacking) |
 
 | `X-Content-Type-Options` | Stops browsers guessing file types, reducing script injection risk |
+
 | `Content-Security-Policy` | Restricts which sources scripts/styles/etc. can load from, mitigating XSS |
+
 | `Referrer-Policy` | Controls how much URL data leaks to other sites via the Referrer header |
+
 | `Permissions-Policy` | Restricts access to browser features like camera, mic, and location |
 
 # Usage
 python header_checker.py https://example.com
 
-## Plan
+# Planned improvements 
+- Add a more detailed analysis of `Content-Security-Policy`
+- Add batch URL scanning from another file
+- Create a "score" based on how secure the URL is
+- JSON output option for scripting and automation
