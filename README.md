@@ -1,4 +1,4 @@
-# security-header-checker
+# Security-header-checker
 A command line tool used to see if a website has set important HTTP security headers and then explains the risk of not having this header.
 
 # What it does
@@ -16,3 +16,5 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 # Usage
 python header_checker.py https://example.com
+
+##Plan
