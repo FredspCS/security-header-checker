@@ -8,7 +8,9 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 | Header | Risk |
 | `Strict-Transport-Security` | Forces HTTPS, preventing downgrade to unencrypted HTTP |
+
 | `X-Frame-Options` | Prevents the site being loaded in a hidden iframe (clickjacking) |
+
 | `X-Content-Type-Options` | Stops browsers guessing file types, reducing script injection risk |
 | `Content-Security-Policy` | Restricts which sources scripts/styles/etc. can load from, mitigating XSS |
 | `Referrer-Policy` | Controls how much URL data leaks to other sites via the Referrer header |
