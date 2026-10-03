@@ -22,9 +22,6 @@ python Header_Checker.py https://example.com
 
 **Only use this on websites you own or have permission to test.**
 
-`python Header_Checker.py https://example.com`
-Only use on websites you own or have permission to test
-
 ## Planned improvements 
 - Add a more detailed analysis of `Content-Security-Policy`
 - Add batch URL scanning from another file
