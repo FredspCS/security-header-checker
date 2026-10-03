@@ -6,6 +6,15 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 ## Headers checked and their associated risk of being missing
 
+| Header | Severity | Risk if missing |
+|---|---|---|
+| `Strict-Transport-Security` | High | Connections can be downgraded to unencrypted HTTP |
+| `Content-Security-Policy` | High | Injected scripts can run unrestricted (XSS) |
+| `X-Frame-Options` | Medium | Site can be loaded in a hidden iframe (clickjacking) |
+| `X-Content-Type-Options` | Medium | Browsers may guess file types, risking script injection |
+| `Referrer-Policy` | Low | Full URLs may leak to other sites via the Referer header |
+| `Permissions-Policy` | Low | Embedded content may access camera, mic or location |
+
 | Header | Risk |
 
 | `Strict-Transport-Security` | Forces HTTPS, preventing downgrade to unencrypted HTTP |
@@ -21,10 +30,10 @@ It sends a request to the provided URL and then inspects the headers for presenc
 | `Permissions-Policy` | Restricts access to browser features like camera, mic, and location |
 
 ## Usage
-python header_checker.py https://example.com
+`python Header_Checker.py https://example.com`
+Only use on websites you own or have permission to test
 
-# Planned improvements 
-- Handle errors
+## Planned improvements 
 - Add a more detailed analysis of `Content-Security-Policy`
 - Add batch URL scanning from another file
 - Create a "score" based on how secure the URL is
