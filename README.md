@@ -8,10 +8,10 @@ It sends a request to the provided URL and then inspects the headers for presenc
 
 | Header | Severity | Risk if missing |
 |---|---|---|
-| `Strict-Transport-Security` | High | Connections can be downgraded to unencrypted HTTP |
-| `Content-Security-Policy` | High | Injected scripts can run unrestricted (XSS) |
-| `X-Frame-Options` | Medium | Site can be loaded in a hidden iframe (clickjacking) |
-| `X-Content-Type-Options` | Medium | Browsers may guess file types, risking script injection |
+| `Strict-Transport-Security` | High | Connections may be downgraded to unencrypted HTTP |
+| `Content-Security-Policy` | High | Untrusted scripts can run unrestricted |
+| `X-Frame-Options` | Medium | A site can be loaded in a hidden iframe (clickjacking) |
+| `X-Content-Type-Options` | Medium | Browsers may guess file types which may lead to malicious script execution |
 | `Referrer-Policy` | Low | Full URLs may leak to other sites via the Referer header |
 | `Permissions-Policy` | Low | Embedded content may access camera, mic or location |
 
