@@ -46,12 +46,12 @@ def fetch_headers(url):
         return response
     except requests.exceptions.Timeout:
         print("Request timed out")
-    except requests.exceptions.SSLError:
+    except requests.exceptions.SSLErrorwhat:
         print("SSL certificate error")
     except requests.exceptions.ConnectionError:
         print("Cannot create network connect to target server")
-    except requests.exceptions.RequestException:
-        print("Request error")
+    except requests.exceptions.RequestException as e:
+        print("Request error: ", e)
     return None
 
 def check_headers_presence(headers):
@@ -71,6 +71,11 @@ def print_results(results):
             print("    Risk: " + info["why"])
             print("    Recommended: " + info["recommended_header"])
             print()
+    present_count = 0
+    for header, (presence, info) in results.items():
+        if presence:
+            present_count += 1
+    print(str(present_count) + "/" + str(len(results)) + " security headers present")
 
 parser = argparse.ArgumentParser(description="Checks security headers")
 parser.add_argument("url", help="The URL to be checked")
