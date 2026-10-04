@@ -141,8 +141,3 @@ if response is not None:
     value_results = check_header_values(response.headers)
     print_value_results(value_results)
 
-"""
-git add .
-git commit -m "Add value checks for weak HSTS max-age and unsafe CSP directives"
-git push
-"""
