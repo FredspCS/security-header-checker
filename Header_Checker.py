@@ -46,10 +46,10 @@ def fetch_headers(url):
         return response
     except requests.exceptions.Timeout:
         print("Request timed out")
-    except requests.exceptions.SSLErrorwhat:
+    except requests.exceptions.SSLError:
         print("SSL certificate error")
     except requests.exceptions.ConnectionError:
-        print("Cannot create network connect to target server")
+        print("Could not connect to the target server")
     except requests.exceptions.RequestException as e:
         print("Request error: ", e)
     return None
@@ -62,6 +62,55 @@ def check_headers_presence(headers):
         else:
             results[header] = (False, info)
     return results
+
+def check_header_values(headers):
+    results = []
+
+    if "Strict-Transport-Security" in headers:
+        value = headers["Strict-Transport-Security"]
+        for part in value.split(";"):
+            part = part.strip()
+            if part.lower().startswith("max-age="):
+                number = part[len("max-age="):]
+                if number.isdigit() and int(number) < 15552000:
+                    results.append(("High","Strict-Transport-Security","max-age is only " + number + " seconds (commonly recommended minimum is 15552000, about 6 months)"))
+
+    if "Content-Security-Policy" in headers:
+        value = headers["Content-Security-Policy"]
+        for part in value.split(";"):
+            words = part.split()
+            if len(words) == 0:
+                continue
+            directive_name = words[0].lower()
+
+            if "'unsafe-inline'" in words:
+                if directive_name == "script-src":
+                    results.append(("High", "Content-Security-Policy", "script-src allows 'unsafe-inline', so injected scripts can run"))
+                elif directive_name == "default-src":
+                    results.append(("High", "Content-Security-Policy", "default-src allows 'unsafe-inline', which can let injected scripts run unless script-src overrides it"))
+                elif directive_name == "style-src":
+                    results.append(("Low", "Content-Security-Policy", "style-src allows 'unsafe-inline' (inline styles are a lower risk than scripts)"))
+
+            if "'unsafe-eval'" in words and directive_name in ("script-src", "default-src"):
+                results.append(("High", "Content-Security-Policy", directive_name + " allows 'unsafe-eval', so text can be turned into runnable code"))
+
+
+
+
+    return results
+
+def print_value_results(results):
+    print("\nHeaders present but weakly configured:\n")
+    if len(results) == 0:
+        print("None")
+    else:
+        for severity,header,reason in results:
+            print("Header: " + header)
+            print("Severity: " + severity)
+            print("Reason: " + reason+"\n")
+
+
+
 
 def print_results(results):
     print("\nAre important security headers present?\n")
@@ -83,8 +132,17 @@ args = parser.parse_args()
 
 url = check_url(args.url)
 response = fetch_headers(url)
+
 if response is not None:
-    results = check_headers_presence(response.headers)
-    print_results(results)
+    presence_results = check_headers_presence(response.headers)
+    print_results(presence_results)
 
 
+    value_results = check_header_values(response.headers)
+    print_value_results(value_results)
+
+"""
+git add .
+git commit -m "Add value checks for weak HSTS max-age and unsafe CSP directives"
+git push
+"""
