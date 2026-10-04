@@ -25,10 +25,54 @@ It sends a request to the provided URL and then runs 3 types of checks on the he
 ```
 python Header_Checker.py https://example.com
 ```
+**Only use this on websites you own or have permission to test.**
 
 ## Example output
 
-**Only use this on websites you own or have permission to test.**
+`Are important security headers present?
+
+Header: Strict-Transport-Security
+Severity: [High]
+Status: NOT present
+Risk: Without this, connections can be downgraded to HTTP, allowing interception of traffic on untrusted networks
+Recommended: Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+Header: Content-Security-Policy
+Severity: [High]
+Status: NOT present
+Risk: Without this, injected scripts can run with no restriction from the browser
+Recommended: Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'
+
+Header: X-Frame-Options
+Severity: [Medium]
+Status: NOT present
+Risk: Without this, a site can be loaded inside a hidden iframe, enabling clickjacking attacks
+Recommended: X-Frame-Options: DENY
+
+Header: X-Content-Type-Options
+Severity: [Medium]
+Status: NOT present
+Risk: Without this, browsers may guess a file's type instead of trusting the declared one, which can cause uploaded content to be run as a script
+Recommended: X-Content-Type-Options: nosniff
+
+Header: Referrer-Policy
+Severity: [Low]
+Status: NOT present
+Risk: Without this, full URLs that may contain sensitive data can leak to external sites via the Referer header
+Recommended: Referrer-Policy: strict-origin-when-cross-origin
+
+Header: Permissions-Policy
+Severity: [Low]
+Status: NOT present
+Risk: Without this, embedded malicious content may access sensitive browser inputs like camera or location
+Recommended: Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+0/6 security main headers present
+
+Other issues found:
+
+None`
+
 
 ## Planned improvements 
 - Add batch URL scanning from another file
