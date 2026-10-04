@@ -26,6 +26,8 @@ It sends a request to the provided URL and then runs 3 types of checks on the he
 python Header_Checker.py https://example.com
 ```
 
+## Example output
+
 **Only use this on websites you own or have permission to test.**
 
 ## Planned improvements 
