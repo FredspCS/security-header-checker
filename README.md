@@ -1,8 +1,10 @@
 # Security-header-checker
-A command line tool used to see if a website has set important HTTP security headers and then explains the risk of not having this header.
+A command line tool that checks a website has set important HTTP security headers. It tells the user about missing headers with a severity rating, the risk it imposes and a recommended header to add. It also warms about weakly configured headers and headers that leak backend software versions.
 
 ## What it does
-It sends a request to the provided URL and then inspects the headers for presence and alerts the user to any missing headers.
+It sends a request to the provided URL and then runs 3 types of checks on the headers.
+
+1. **presence**
 
 ## Headers checked and their associated risk of being missing
 
