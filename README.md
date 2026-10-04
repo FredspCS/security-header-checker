@@ -4,7 +4,11 @@ A command line tool that checks a website has set important HTTP security header
 ## What it does
 It sends a request to the provided URL and then runs 3 types of checks on the headers.
 
-1. **presence**
+1. **Presence:** Are six important security headers set? missing ones are listed with severity rating, the risk it imposes and a recommended header to add.
+2. **Weak header values:** Checks for headers that are present but weakly configured. The two headers it checks.
+   - `Strict-Transport-Security` Checks for short `max-age` (should be 6 months at least).
+   - `Content-Security-Policy` Checks if `unsafe-inline` or `unsafe-eval` directives are present.
+3. **Information leaks:** Checks for `server` headers that could reveal a version number of the backend software being used.
 
 ## Headers checked and their associated risk of being missing
 
