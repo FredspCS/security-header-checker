@@ -23,8 +23,7 @@ python Header_Checker.py https://example.com
 **Only use this on websites you own or have permission to test.**
 
 ## Planned improvements 
-- Add a more detailed analysis of `Content-Security-Policy`
 - Add batch URL scanning from another file
-- Create a "score" based on how secure the URL is
 - JSON output option for scripting and automation
 - Only flag unsafe-inline in default-src if no script-src directive present to reduce false positives in CSP header checks
+- Use --verbose flag for more detailed error messages
